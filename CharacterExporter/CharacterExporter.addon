@@ -1,0 +1,9 @@
+## APIVersion: 101048 101049
+## Title: Character Exporter
+## Version: 1.0.0
+## AddOnVersion: 1000
+## Author: Shadow
+## Description: Esporta i dati del personaggio in formato leggibile. Usa /export per esportare.
+## SavedVariables: CharacterExporterData
+
+CharacterExporter.lua
