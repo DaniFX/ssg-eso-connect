@@ -3,9 +3,9 @@ local addonName = "CharacterExporter"
 CharacterExporterData = CharacterExporterData or {}
 
 local function GetAttributeName(attributeId)
-    if attributeId == POWERTYPE_HEALTH then return "Salute"
-    elseif attributeId == POWERTYPE_MAGICKA then return "Magicka"
-    elseif attributeId == POWERTYPE_STAMINA then return "Stamina"
+    if attributeId == COMBAT_MECHANIC_FLAGS_HEALTH then return "Salute"
+    elseif attributeId == COMBAT_MECHANIC_FLAGS_MAGICKA then return "Magicka"
+    elseif attributeId == COMBAT_MECHANIC_FLAGS_STAMINA then return "Stamina"
     else return "Sconosciuto" end
 end
 
@@ -44,9 +44,9 @@ local function CollectCharacterData()
     -- Attributes
     data.attributes = {}
     local powerTypes = {
-        [POWERTYPE_HEALTH] = { name = "Salute" },
-        [POWERTYPE_MAGICKA] = { name = "Magicka" },
-        [POWERTYPE_STAMINA] = { name = "Stamina" }
+        [COMBAT_MECHANIC_FLAGS_HEALTH] = { name = "Salute" },
+        [COMBAT_MECHANIC_FLAGS_MAGICKA] = { name = "Magicka" },
+        [COMBAT_MECHANIC_FLAGS_STAMINA] = { name = "Stamina" }
     }
     
     for powerType, info in pairs(powerTypes) do
@@ -67,9 +67,9 @@ local function CollectCharacterData()
         end
     end
     
-    safeAddStat("Massima Salute", data.attributes[POWERTYPE_HEALTH].max)
-    safeAddStat("Massima Magicka", data.attributes[POWERTYPE_MAGICKA].max)
-    safeAddStat("Massima Stamina", data.attributes[POWERTYPE_STAMINA].max)
+    safeAddStat("Massima Salute", data.attributes[COMBAT_MECHANIC_FLAGS_HEALTH].max)
+    safeAddStat("Massima Magicka", data.attributes[COMBAT_MECHANIC_FLAGS_MAGICKA].max)
+    safeAddStat("Massima Stamina", data.attributes[COMBAT_MECHANIC_FLAGS_STAMINA].max)
 
     -- Equipment
     data.equipment = {}
@@ -94,7 +94,7 @@ local function CollectCharacterData()
         local itemId = GetItemId(bagId, slotIndex)
         if itemId and itemId > 0 then
             local itemName = GetItemName(bagId, slotIndex)
-            local quality = GetItemQuality(bagId, slotIndex)
+            local quality = GetItemDisplayQuality(bagId, slotIndex)
             local icon, _, _, _, _, _, _ = GetItemInfo(bagId, slotIndex)
             local displayQuality = {"Grigio", "Verde", "Blu", "Viola", "Oro", "Epico"}
             data.equipment[slotName] = {
